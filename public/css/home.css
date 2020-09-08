@@ -1,0 +1,97 @@
+.container{
+    height:100%;
+}
+
+.actions{
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    height: 95%;
+    min-width: 150px;
+    min-height: 250px;
+    max-height: 400px;
+    margin:1em 0em;
+    width:100%;
+    display:inline-block;
+}
+
+.action-container{
+    max-width: 500px !important;
+}
+
+.action-link{
+    width:100%;
+    display: block;
+    padding: 1em;
+    font-size: 1.15rem;
+    border-top: 1px solid #dadce0;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.action-link:hover{
+    text-decoration: none;
+    color:#4a5feb;
+    background-color:#dadce0;
+    border-bottom:1px solid #dadce0;
+}
+
+.action-title{
+    height:75%;
+    position:relative;
+}
+
+.action-title > span {
+    left: 34%;
+    position: relative;
+    top: 40%;
+}
+
+#order-action > .action-image{
+    background:url('../images/actionImages/orders.jpg');
+    background-size: cover;
+    position: absolute;
+    background-position:top;
+    border-radius:8px 8px 0px 0px;
+    width:100%;
+    height:100%;
+}
+
+#product-action > .action-image{
+    background:url('../images/actionImages/products.jpg');
+    background-size: cover;
+    position: absolute;
+    background-position:top;
+    border-radius:8px 8px 0px 0px;
+    width:100%;
+    height:100%;
+}
+
+#customer-action > .action-image{
+    background:url('../images/actionImages/customers.jpg');
+    background-size: cover;
+    position: absolute;
+    background-position:top;
+    border-radius:8px 8px 0px 0px;
+    width:100%;
+    height:100%;
+}
+
+#brand-action > .action-image {
+    background:url('../images/actionImages/brands.jpg');
+    background-size: cover;
+    position: absolute;
+    background-position:top;
+    border-radius:8px 8px 0px 0px;
+    width:100%;
+    height:100%;
+}
+
+#product-type-action > .action-image {
+    background:url('../images/actionImages/productTypes.jpg');
+    background-size: cover;
+    position: absolute;
+    background-position:top;
+    border-radius:8px 8px 0px 0px;
+    width:100%;
+    height:100%;
+}
+

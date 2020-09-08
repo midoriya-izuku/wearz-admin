@@ -7,17 +7,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Wearz Admin</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    @stack('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body,html{
+            height:100%;
+        }
+        main{
+            height:100%;
+        }
+        #app{
+            height:100%;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -76,5 +87,8 @@
             @yield('content')
         </main>
     </div>
+    @stack('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

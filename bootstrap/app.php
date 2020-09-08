@@ -35,6 +35,12 @@ $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
+# new storage path
+# base_path() -> returns root path
+$path_storage = "D:/laravel/wearzImages";
+
+# override already $app->storagePath using the function
+$app->useStoragePath($path_storage);
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
