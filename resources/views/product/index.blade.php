@@ -33,7 +33,14 @@
                    <td>{{$product->id}}</td>
                    <td>{{$product->name}}</td>
                    <td>
-                       <img class="product-image" src={{$product->image}} alt={{$product->name}}>
+                      <picture>
+                        <source media="(max-width:600px)" srcset={{str_replace(".jpg", "-preview-xs.jpg", $product->image)}}>
+                        <source media="(min-width:600px)" srcset={{str_replace(".jpg", "-preview-sm.jpg", $product->image)}}>
+                        <source media="(min-width:900px)" srcset={{str_replace(".jpg", "-preview-md.jpg", $product->image)}}>
+                        <source media="(min-width:1280px)" srcset={{str_replace(".jpg", "-preview-lg.jpg", $product->image)}}>
+                        <source media="(min-width:1920px)" srcset={{str_replace(".jpg", "-preview-xl.jpg", $product->image)}}>
+                        <img class="product-image" src={{$product->image}} alt={{$product->name}}>
+                      </picture>
                    </td>
                    <td>{{$product->size}}</td>
                    <td>{{$product->color}}</td>

@@ -43,7 +43,7 @@ class ProductTypeController extends Controller
         //set the name of image as name of the productType and some random string remove all spaces in name
         $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
         $destinationPath = public_path('/storage/product_types/');
-        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false, false);
+        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,false, false, 626, 626);
         $path = "/storage/product_types/${imageName}.jpg";
         $productType = new ProductType;
         $productType->name = $name;
@@ -83,7 +83,7 @@ class ProductTypeController extends Controller
             //set the name of image as name of the productType and some random string remove all spaces in name
             $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
             $destinationPath = public_path('/storage/product_types/');
-            $imageHelper->resizeImagePost($image, $imageName, $destinationPath, 626, 626, false, false);
+            $imageHelper->resizeImagePost($image, $imageName, $destinationPath, false, false, 626, 626);
             $path = "/storage/product_types/${imageName}.jpg";
             $productType->image = $path;
             $imageHelper->deleteImages($prevImage, false);

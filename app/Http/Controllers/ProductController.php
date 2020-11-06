@@ -117,7 +117,7 @@ class ProductController extends Controller
             $imageHelper->resizeImagePost($newImage, $imageName, $destinationPath, true, true);
             $path = "/storage/product_images/${imageName}.jpg";
             $product->image = $path;
-            $imageHelper->deleteImages($prevImage, false);
+            $imageHelper->deleteImages($prevImage, true);
             
         }
        

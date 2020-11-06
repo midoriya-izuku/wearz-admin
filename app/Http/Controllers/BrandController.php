@@ -43,7 +43,7 @@ class BrandController extends Controller
         //set the name of image as name of the brand and some random string remove all spaces in name
         $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
         $destinationPath = public_path('/storage/brand_images/');
-        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false,false);
+        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,false,false,626,626);
         $path = "/storage/brand_images/${imageName}.jpg";
         $brand = new Brand;
         $brand->name = $name;
@@ -84,7 +84,7 @@ class BrandController extends Controller
             //set the name of image as name of the brand and some random string remove all spaces in name
             $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
             $destinationPath = public_path('/storage/brand_images/');
-            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false, false);
+            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,false, false, 626, 626);
             $path = "/storage/brand_images/${imageName}.jpg";
             $brand->image = $path;
             $imageHelper->deleteImages($prevImage, false);
