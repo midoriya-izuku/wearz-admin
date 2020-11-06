@@ -51,7 +51,7 @@ class ProductController extends Controller
         $image = $request->file('productImage');
         $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator().".jpg";
         $destinationPath = public_path('/storage/product_images/');
-        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,800,800,true);
+        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,true, true);
         $path = "/storage/product_images/".$imageName;
         $product = new Product;
         $product->name = $name;
@@ -101,21 +101,24 @@ class ProductController extends Controller
      */
     public function update(Request $request,$productId)
     {
+        $product = Product::find($productId);
+        $prevImage = $product->image;
+        $newImage = $request->file('productImage');
         $name = $request->input('name');
         $color = $request->input('color');
         $price = $request->input('price');
         $sizes = $request->input('sizes');
         $brand_id = $request->input('brand');
         $type_id = $request->input('type');
-        $image = $request->file('productImage');
-        $product = Product::find($productId);
         $imageHelper = new ImageHelper;
-        if($image){
-            $imageName = $name.$imageHelper->randomStringGenerator().".jpg";
+        if($newImage){
+            $imageName = $name.$imageHelper->randomStringGenerator();
             $destinationPath = public_path('/storage/product_images/');
-            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,800,800,true);
-            $path = "/storage/product_images/".$imageName;
+            $imageHelper->resizeImagePost($newImage, $imageName, $destinationPath, true, true);
+            $path = "/storage/product_images/${imageName}.jpg";
             $product->image = $path;
+            $imageHelper->deleteImages($prevImage, false);
+            
         }
        
         $product->name = $name;

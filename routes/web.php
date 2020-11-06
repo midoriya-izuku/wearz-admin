@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::group(['middleware'=>'web'],function(){
+Route::group(['middleware'=>['web', 'auth']],function(){
     Route::get('/', 'HomeController@index');
     Route::resource('/orders','OrderController');
     Route::resource('/products','ProductController');

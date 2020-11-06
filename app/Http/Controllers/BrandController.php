@@ -41,10 +41,10 @@ class BrandController extends Controller
         $imageHelper = new ImageHelper;
         $image = $request->file('brandLogo');
         //set the name of image as name of the brand and some random string remove all spaces in name
-        $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator().".jpg";
+        $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
         $destinationPath = public_path('/storage/brand_images/');
-        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false);
-        $path = "/storage/brand_images/".$imageName;
+        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false,false);
+        $path = "/storage/brand_images/${imageName}.jpg";
         $brand = new Brand;
         $brand->name = $name;
         $brand->image = $path;
@@ -79,13 +79,15 @@ class BrandController extends Controller
         $imageHelper = new ImageHelper;
         $image = $request->file('brandLogo');
         $brand = Brand::find($brandId);
+        $prevImage = $brand->image;
         if($image){
             //set the name of image as name of the brand and some random string remove all spaces in name
-            $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator().".jpg";
+            $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
             $destinationPath = public_path('/storage/brand_images/');
-            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false);
-            $path = "/storage/brand_images/".$imageName;
+            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false, false);
+            $path = "/storage/brand_images/${imageName}.jpg";
             $brand->image = $path;
+            $imageHelper->deleteImages($prevImage, false);
         }
         $brand->name = $name;
         $brand->save();

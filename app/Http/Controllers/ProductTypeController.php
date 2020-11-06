@@ -41,10 +41,10 @@ class ProductTypeController extends Controller
         $imageHelper = new ImageHelper;
         $image = $request->file('productTypeImage');
         //set the name of image as name of the productType and some random string remove all spaces in name
-        $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator().".jpg";
+        $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
         $destinationPath = public_path('/storage/product_types/');
-        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false);
-        $path = "/storage/product_types/".$imageName;
+        $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626,false, false);
+        $path = "/storage/product_types/${imageName}.jpg";
         $productType = new ProductType;
         $productType->name = $name;
         $productType->image = $path;
@@ -78,13 +78,15 @@ class ProductTypeController extends Controller
         $imageHelper = new ImageHelper;
         $image = $request->file('productTypeImage');
         $productType = ProductType::find($productTypeId);
+        $prevImage = $productType->image;
         if($image){
             //set the name of image as name of the productType and some random string remove all spaces in name
-            $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator().".jpg";
+            $imageName = str_replace(' ','',$name).$imageHelper->randomStringGenerator();
             $destinationPath = public_path('/storage/product_types/');
-            $imageHelper->resizeImagePost($image, $imageName, $destinationPath,626,626, false);
-            $path = "/storage/product_types/".$imageName;
+            $imageHelper->resizeImagePost($image, $imageName, $destinationPath, 626, 626, false, false);
+            $path = "/storage/product_types/${imageName}.jpg";
             $productType->image = $path;
+            $imageHelper->deleteImages($prevImage, false);
         }
         $productType->name = $name;
         $productType->save();
